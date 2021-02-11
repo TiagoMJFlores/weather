@@ -48,7 +48,7 @@ class WeatherListViewController: UIViewController {
         super.viewDidLoad()
         addView()
         configureLayout()
-        tableView.reloadData()
+        presenter.viewWasLoaded()
     }
     
     private func configureLayout() {
@@ -109,6 +109,10 @@ extension WeatherListViewController: UISearchResultsUpdating {
 
 // MARK: WeatherViewReceiver
 extension WeatherListViewController: WeatherViewReceiver {
+    
+    func reloadData() {
+        tableView.reloadData()
+    }
     
 }
 
