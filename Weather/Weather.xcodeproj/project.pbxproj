@@ -17,9 +17,11 @@
 		90474F1425D5BED300276732 /* WeatherListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F1325D5BED300276732 /* WeatherListPresenter.swift */; };
 		90474F2F25D5C16F00276732 /* WeatherListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F2E25D5C16F00276732 /* WeatherListCoordinator.swift */; };
 		90474F3525D5C1E700276732 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F3425D5C1E700276732 /* CoordinatorProtocol.swift */; };
-		90474F3B25D5C34E00276732 /* WeatherDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F3A25D5C34E00276732 /* WeatherDayTableViewCell.swift */; };
+		90474F3B25D5C34E00276732 /* WeatherDaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F3A25D5C34E00276732 /* WeatherDaysTableViewCell.swift */; };
 		90474F4325D5C3E900276732 /* WeatherViewReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F4225D5C3E900276732 /* WeatherViewReceiver.swift */; };
 		90474F4E25D5C59300276732 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F4D25D5C59300276732 /* AppCoordinator.swift */; };
+		90474F5625D5C66500276732 /* WeatherDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F5525D5C66500276732 /* WeatherDayCollectionViewCell.swift */; };
+		90474F6525D5C89200276732 /* WeatherDayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F6425D5C89200276732 /* WeatherDayPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +58,11 @@
 		90474F1325D5BED300276732 /* WeatherListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListPresenter.swift; sourceTree = "<group>"; };
 		90474F2E25D5C16F00276732 /* WeatherListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListCoordinator.swift; sourceTree = "<group>"; };
 		90474F3425D5C1E700276732 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
-		90474F3A25D5C34E00276732 /* WeatherDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDayTableViewCell.swift; sourceTree = "<group>"; };
+		90474F3A25D5C34E00276732 /* WeatherDaysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDaysTableViewCell.swift; sourceTree = "<group>"; };
 		90474F4225D5C3E900276732 /* WeatherViewReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewReceiver.swift; sourceTree = "<group>"; };
 		90474F4D25D5C59300276732 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		90474F5525D5C66500276732 /* WeatherDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDayCollectionViewCell.swift; sourceTree = "<group>"; };
+		90474F6425D5C89200276732 /* WeatherDayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDayPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,9 +198,19 @@
 		90474F3925D5C33800276732 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				90474F3A25D5C34E00276732 /* WeatherDayTableViewCell.swift */,
+				90474F6325D5C87C00276732 /* WeatherDay */,
+				90474F3A25D5C34E00276732 /* WeatherDaysTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		90474F6325D5C87C00276732 /* WeatherDay */ = {
+			isa = PBXGroup;
+			children = (
+				90474F5525D5C66500276732 /* WeatherDayCollectionViewCell.swift */,
+				90474F6425D5C89200276732 /* WeatherDayPresenter.swift */,
+			);
+			path = WeatherDay;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,8 +347,10 @@
 				90474F4325D5C3E900276732 /* WeatherViewReceiver.swift in Sources */,
 				90474F3525D5C1E700276732 /* CoordinatorProtocol.swift in Sources */,
 				90474F1425D5BED300276732 /* WeatherListPresenter.swift in Sources */,
-				90474F3B25D5C34E00276732 /* WeatherDayTableViewCell.swift in Sources */,
+				90474F3B25D5C34E00276732 /* WeatherDaysTableViewCell.swift in Sources */,
 				90474F4E25D5C59300276732 /* AppCoordinator.swift in Sources */,
+				90474F5625D5C66500276732 /* WeatherDayCollectionViewCell.swift in Sources */,
+				90474F6525D5C89200276732 /* WeatherDayPresenter.swift in Sources */,
 				90474ED725D5BDFB00276732 /* AppDelegate.swift in Sources */,
 				90474ED925D5BDFB00276732 /* SceneDelegate.swift in Sources */,
 			);
