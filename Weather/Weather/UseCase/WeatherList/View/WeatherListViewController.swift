@@ -79,7 +79,8 @@ extension WeatherListViewController: UITableViewDataSource {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? WeatherDaysTableViewCell else {
         return UITableViewCell()
     }
-    cell.configure()
+    let itemPresenter = presenter.item(at: indexPath)
+    cell.configure(presenter: itemPresenter)
   
     return cell
   }

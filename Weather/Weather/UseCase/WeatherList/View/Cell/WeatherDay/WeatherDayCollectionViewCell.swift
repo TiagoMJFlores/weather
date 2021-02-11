@@ -9,7 +9,7 @@ import UIKit
 
 class WeatherDayCollectionViewCell: UICollectionViewCell {
     
-    var presenter: WeatherDayPresenterProtocol?
+    private var presenter: WeatherDayPresenterProtocol?
     
     private (set) lazy var titleTextLabel: UILabel = {
         let titleTextLabel = UILabel()
@@ -21,12 +21,12 @@ class WeatherDayCollectionViewCell: UICollectionViewCell {
     
 
     private (set) lazy var weatherImageView: UIImageView = {
-        let pokemonImageView = UIImageView()
-        pokemonImageView.layer.cornerRadius = pokemonImageView.frame.width / 2
-        pokemonImageView.clipsToBounds = true
-        pokemonImageView.contentMode = .scaleAspectFit
-        pokemonImageView.backgroundColor = .white
-        return pokemonImageView
+        let weatherImageView = UIImageView()
+        weatherImageView.layer.cornerRadius = weatherImageView.frame.width / 2
+        weatherImageView.clipsToBounds = true
+        weatherImageView.contentMode = .scaleAspectFit
+        weatherImageView.backgroundColor = .white
+        return weatherImageView
     }()
     
    
@@ -34,7 +34,7 @@ class WeatherDayCollectionViewCell: UICollectionViewCell {
         let stackView = UIStackView()
         let spacerView = UIView()
       
-        stackView.axis  = .horizontal
+        stackView.axis  = .vertical
         stackView.distribution  = .fill
         stackView.alignment = .top
         //stackView.spacing   = 8
@@ -73,12 +73,19 @@ class WeatherDayCollectionViewCell: UICollectionViewCell {
         let titleHeightConstraint = titleTextLabel.heightAnchor.constraint(equalTo: horizontalStackView.heightAnchor)
         titleHeightConstraint.priority = UILayoutPriority(rawValue: 999)
         titleHeightConstraint.isActive = true
-        let imageWidthConstraint = weatherImageView.widthAnchor.constraint(equalToConstant: 100)
+        let imageWidthConstraint = weatherImageView.heightAnchor.constraint(equalToConstant: 80)
         imageWidthConstraint.priority = UILayoutPriority(rawValue: 999)
         imageWidthConstraint.isActive = true
     }
     
     func configure(with presenter: WeatherDayPresenterProtocol) {
+      
         titleTextLabel.text = "rddsd"
+        presenter.imageDownloader.downloadImage(imageUrl: "https://openweathermap.org/img/wn/10d@2x.png") { [weak self] image in
+            guard let self = self else {
+                return
+            }
+            self.weatherImageView.image = image
+        }
     }
 }

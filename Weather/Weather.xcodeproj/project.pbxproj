@@ -22,6 +22,7 @@
 		90474F4E25D5C59300276732 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F4D25D5C59300276732 /* AppCoordinator.swift */; };
 		90474F5625D5C66500276732 /* WeatherDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F5525D5C66500276732 /* WeatherDayCollectionViewCell.swift */; };
 		90474F6525D5C89200276732 /* WeatherDayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F6425D5C89200276732 /* WeatherDayPresenter.swift */; };
+		90474F6B25D5D3B400276732 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90474F6A25D5D3B400276732 /* ImageDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		90474F4D25D5C59300276732 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		90474F5525D5C66500276732 /* WeatherDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDayCollectionViewCell.swift; sourceTree = "<group>"; };
 		90474F6425D5C89200276732 /* WeatherDayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDayPresenter.swift; sourceTree = "<group>"; };
+		90474F6A25D5D3B400276732 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		90474F0925D5BE5A00276732 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				90474F6925D5D3A600276732 /* Services */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,8 +201,8 @@
 		90474F3925D5C33800276732 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				90474F6325D5C87C00276732 /* WeatherDay */,
 				90474F3A25D5C34E00276732 /* WeatherDaysTableViewCell.swift */,
+				90474F6325D5C87C00276732 /* WeatherDay */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -211,6 +214,14 @@
 				90474F6425D5C89200276732 /* WeatherDayPresenter.swift */,
 			);
 			path = WeatherDay;
+			sourceTree = "<group>";
+		};
+		90474F6925D5D3A600276732 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				90474F6A25D5D3B400276732 /* ImageDownloader.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +363,7 @@
 				90474F5625D5C66500276732 /* WeatherDayCollectionViewCell.swift in Sources */,
 				90474F6525D5C89200276732 /* WeatherDayPresenter.swift in Sources */,
 				90474ED725D5BDFB00276732 /* AppDelegate.swift in Sources */,
+				90474F6B25D5D3B400276732 /* ImageDownloader.swift in Sources */,
 				90474ED925D5BDFB00276732 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

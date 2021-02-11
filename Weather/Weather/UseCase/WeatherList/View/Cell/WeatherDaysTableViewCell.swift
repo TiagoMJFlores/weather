@@ -10,6 +10,7 @@ import UIKit
 class WeatherDaysTableViewCell: UITableViewCell {
 
     private let collectionInsets: CGFloat = 16
+    private var presenter: WeatherDayPresenterProtocol?
     
     private lazy var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -33,7 +34,8 @@ class WeatherDaysTableViewCell: UITableViewCell {
         return collection
     }()
     
-    func configure() {
+    func configure(presenter: WeatherDayPresenterProtocol) {
+        self.presenter = presenter
         collectionView.reloadData()
     }
     
@@ -58,12 +60,17 @@ extension WeatherDaysTableViewCell: UICollectionViewDelegate,  UICollectionViewD
     
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherDayCollectionViewCell", for: indexPath) as? WeatherDayCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherDayCollectionViewCell", for: indexPath) as? WeatherDayCollectionViewCell,
+              let presenter = presenter else {
             return UICollectionViewCell()
         }
+  
         cell.backgroundColor = UIColor.gray
         cell.largeContentTitle = "sdss"
-        cell.configure(with: WeatherDayPresenter())
+   
+        cell.configure(with: presenter)
+       // let item = presenter.im
+        //cell.configure(with: WeatherDayPresenter(imageDownloader: )
         return cell
     }
     
