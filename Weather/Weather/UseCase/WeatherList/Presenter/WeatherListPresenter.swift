@@ -7,16 +7,10 @@
 
 import Foundation
 
-protocol WeatherListProtocol {
-    
-    func viewWasLoaded()
-    func numberItems() -> Int
-    func item(at indexPath: IndexPath)  -> WeatherDayPresenterProtocol
-    
-}
+typealias WeatherListPresenterProtocol = WeatherListDelegate & WeatherListDataSource
 
 
-class WeatherListPresenter: WeatherListProtocol {
+class WeatherListPresenter {
     
     weak var view: WeatherViewReceiver?
     private let imageDownloader = ImageDownloader()
@@ -34,6 +28,12 @@ class WeatherListPresenter: WeatherListProtocol {
     }
     
     
+
+}
+
+
+extension WeatherListPresenter: WeatherListDelegate {
+ 
     func viewWasLoaded() {
         networkProvider.request(type: Welcome.self, service: weatherEndPoint) { [weak self] (result) in
             guard let self = self else {
@@ -83,6 +83,15 @@ class WeatherListPresenter: WeatherListProtocol {
         return weatherViewData
     }
     
+    func search(searchText: String) {
+        
+    }
+    
+}
+
+
+
+extension WeatherListPresenter: WeatherListDataSource {
     
     func item(at indexPath: IndexPath) -> WeatherDayPresenterProtocol {
         

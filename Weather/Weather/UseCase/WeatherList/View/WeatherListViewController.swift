@@ -31,9 +31,9 @@ class WeatherListViewController: UIViewController {
     }()
         
   
-    let presenter: WeatherListProtocol
+    let presenter: WeatherListPresenterProtocol
     
-    init(presenter: WeatherListProtocol) {
+    init(presenter: WeatherListPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }

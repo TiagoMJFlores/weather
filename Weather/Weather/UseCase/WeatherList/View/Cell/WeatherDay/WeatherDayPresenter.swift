@@ -22,8 +22,7 @@ class WeatherDayPresenter: WeatherDayPresenterProtocol {
         self.imageDownloader = imageDownloader
     }
     
-  
-    
+
 }
 
 extension WeatherDayPresenter: WeatherCollectionDataSource  {
