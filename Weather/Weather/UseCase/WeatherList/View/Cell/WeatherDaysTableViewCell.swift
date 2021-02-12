@@ -20,7 +20,6 @@ class WeatherDaysTableViewCell: UITableViewCell {
          collection.showsHorizontalScrollIndicator = false
          collection.isPagingEnabled = true
          collection.register(WeatherDayCollectionViewCell.self, forCellWithReuseIdentifier: "WeatherDayCollectionViewCell")
-        collection.backgroundColor = UIColor.red
         collection.dataSource = self
         collection.delegate = self
         collection.translatesAutoresizingMaskIntoConstraints = false

@@ -19,7 +19,6 @@ class WeatherDayCollectionViewCell: UICollectionViewCell {
         return titleTextLabel
     }()
     
-
     private (set) lazy var weatherImageView: UIImageView = {
         let weatherImageView = UIImageView()
         weatherImageView.layer.cornerRadius = weatherImageView.frame.width / 2
@@ -43,7 +42,6 @@ class WeatherDayCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
         
-
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -83,11 +81,15 @@ class WeatherDayCollectionViewCell: UICollectionViewCell {
         let item = presenter.item(at: indexPath)
         titleTextLabel.text =  "Temperatue: \(item.main.temp), Time: \(item.timeStr)"
         
-        presenter.imageDownloader.downloadImage(imageUrl: "https://openweathermap.org/img/wn/10d@2x.png") { [weak self] image in
+        if let weatherItem = item.weather.first {
+            let imageUrl =  "https://openweathermap.org/img/wn/\(weatherItem.icon)@2x.png"
+        presenter.imageDownloader.downloadImage(imageUrl: imageUrl) { [weak self] image in
             guard let self = self else {
                 return
             }
             self.weatherImageView.image = image
         }
+        }
+          
     }
 }
