@@ -20,8 +20,12 @@ class NetworkSessionProvider: NetworkProviderProtocol {
         urlComps.queryItems = service.queryItems
         let request = URLRequest(url: urlComps.url!)
         let task = session.dataTask(request: request, completionHandler: { [weak self] data, response, error in
-            let httpResponse = response as? HTTPURLResponse
-            self?.handleDataResponse(data: data, response: httpResponse, error: error, completion: completion)
+            
+            DispatchQueue.main.async {
+                let httpResponse = response as? HTTPURLResponse
+                self?.handleDataResponse(data: data, response: httpResponse, error: error, completion: completion)
+            }
+            
         })
         task.resume()
     }

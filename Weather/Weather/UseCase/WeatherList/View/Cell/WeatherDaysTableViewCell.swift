@@ -67,8 +67,7 @@ extension WeatherDaysTableViewCell: UICollectionViewDelegate,  UICollectionViewD
   
         cell.backgroundColor = UIColor.gray
         cell.largeContentTitle = "sdss"
-   
-        cell.configure(with: presenter)
+        cell.configure( indexPath: indexPath, with: presenter)
        // let item = presenter.im
         //cell.configure(with: WeatherDayPresenter(imageDownloader: )
         return cell

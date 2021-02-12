@@ -10,7 +10,7 @@ import UIKit
 class WeatherDayCollectionViewCell: UICollectionViewCell {
     
     private var presenter: WeatherDayPresenterProtocol?
-    
+ 
     private (set) lazy var titleTextLabel: UILabel = {
         let titleTextLabel = UILabel()
         titleTextLabel.numberOfLines = 0
@@ -78,9 +78,11 @@ class WeatherDayCollectionViewCell: UICollectionViewCell {
         imageWidthConstraint.isActive = true
     }
     
-    func configure(with presenter: WeatherDayPresenterProtocol) {
-      
-        titleTextLabel.text = "rddsd"
+    func configure(indexPath: IndexPath, with presenter: WeatherDayPresenterProtocol) {
+
+        let item = presenter.item(at: indexPath)
+        titleTextLabel.text =  "Temperatue: \(item.main.temp), Time: \(item.timeStr)"
+        
         presenter.imageDownloader.downloadImage(imageUrl: "https://openweathermap.org/img/wn/10d@2x.png") { [weak self] image in
             guard let self = self else {
                 return
