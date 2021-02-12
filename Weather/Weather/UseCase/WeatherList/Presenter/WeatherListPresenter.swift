@@ -15,7 +15,7 @@ final class WeatherListPresenter {
     weak var view: WeatherViewReceiver?
     private let imageDownloader = ImageDownloader()
     
-    private let networkProvider: NetworkProviderProtocol
+    private var networkProvider: NetworkProviderProtocol
     private var defaultWeatherEndPoint: WeatherApiServiceProtocol
     private var weatherViewData: [WeatherDayData] = []
     
@@ -28,7 +28,17 @@ final class WeatherListPresenter {
 
 
 extension WeatherListPresenter: WeatherListDelegate {
- 
+    
+    func toggle(changeTo value: Bool) {
+        if value == true {
+            networkProvider = WeatherProviderStub()
+        } else {
+            networkProvider = NetworkSessionProvider(session: URLSession.makeUrlSession())
+        }
+        getData(using: defaultWeatherEndPoint)
+    }
+    
+
     func viewWasLoaded() {
         getData(using: defaultWeatherEndPoint)
     }

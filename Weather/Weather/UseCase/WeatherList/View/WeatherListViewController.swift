@@ -21,13 +21,13 @@ final class WeatherListViewController: UIViewController {
     
     
     private lazy var searchController: UISearchController = {
-        let s =   UISearchController()
-        s.definesPresentationContext = true
-        s.searchResultsUpdater = self
-        s.obscuresBackgroundDuringPresentation = false
-        s.searchBar.placeholder = "Search"
-        s.searchBar.searchBarStyle = .prominent
-        return s
+        let searchController =   UISearchController()
+        searchController.definesPresentationContext = true
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.searchBarStyle = .prominent
+        return searchController
     }()
         
   
@@ -50,11 +50,38 @@ final class WeatherListViewController: UIViewController {
     }
     
     private func configureLayout() {
+        setupBarButtonItem()
+        setupTableView() 
+    }
+    
+    private func setupTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    }
+    
+    private func setupBarButtonItem() {
+        let offLabel = UILabel()
+        offLabel.font = UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize)
+        offLabel.text = "OFF"
+
+        let onLabel = UILabel()
+        onLabel.font = UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize)
+        onLabel.text = "ON"
+
+        let toggle = UISwitch()
+        toggle.addTarget(self, action: #selector(toggleValueChanged(_:)), for: .valueChanged)
+
+        let stackView = UIStackView(arrangedSubviews: [offLabel, toggle, onLabel])
+        stackView.spacing = 8
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: stackView)
+    }
+
+    @objc func toggleValueChanged(_ toggle: UISwitch) {
+        presenter.toggle(changeTo: toggle.isOn)
     }
     
     private func addView() {

@@ -10,4 +10,5 @@ import Foundation
 protocol WeatherListDelegate {
     func viewWasLoaded()
     func search(searchText: String)
+    func toggle(changeTo value: Bool)
 }
