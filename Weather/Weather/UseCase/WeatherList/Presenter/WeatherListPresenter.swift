@@ -16,12 +16,6 @@ protocol WeatherListProtocol {
 }
 
 
-
-struct WeatherDayData {
-    let day: String
-    let weatherList: [WeatherList]
-}
-
 class WeatherListPresenter: WeatherListProtocol {
     
     weak var view: WeatherViewReceiver?
@@ -32,7 +26,7 @@ class WeatherListPresenter: WeatherListProtocol {
     
     private var weatherViewData: [WeatherDayData] = []
     
-    private var weatherData: [String: [WeatherList]] =  [String: [WeatherList]]()
+
     
     init(networkProvider: NetworkProviderProtocol = NetworkSessionProvider(session: URLSession.makeUrlSession()) /*WeatherProviderStub()*/, endPoint: WeatherApiServiceProtocol = WeatherApiService.search(text: "Madrid")) {
         self.weatherEndPoint = endPoint
@@ -48,44 +42,48 @@ class WeatherListPresenter: WeatherListProtocol {
             switch result {
             
             case .success(let data):
-                for item in data.weatherList {
-                    let date = Date(timeIntervalSince1970: TimeInterval(item.dt))
-                    let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
-                    
-                    let dayStr = "\(calendarDate.day ?? 0)"
-                    var elementsInDay = self.weatherData[dayStr]
-                    if elementsInDay == nil {
-                        elementsInDay = []
-                    }
-                    elementsInDay?.append(item)
-                    self.weatherData[dayStr] = elementsInDay
-                    let d = ""
-                }
-                let sd = ""
+              
+                self.weatherViewData = self.mapModelDataToViewData(from: data.weatherList)
+                
                 break
             case .failure(_):
                 break
             }
             
            
-            self.weatherViewData = self.weatherData.keys.map { key in
-                var elementsInDay = self.weatherData[key]
-         
-                let weatherViewData = WeatherDayData(day: key, weatherList: elementsInDay ?? [])
-                
-                return weatherViewData
-            }
-            
-            self.weatherViewData.sort(by: { $0.day.compare($1.day) == .orderedAscending })
-            /*
-            for key in self.weatherData.keys {
-                var elementsInDay = self.weatherData["\(calendarDate.day)"]
-                print(key)
-            }*/
+           
           
+            self.weatherViewData.sort(by: { $0.day.compare($1.day) == .orderedAscending })
             self.view?.reloadData()
-            let sdd = ""
         }
+    }
+    
+    private func mapModelDataToViewData(from weatherList: [WeatherList]) -> [WeatherDayData]  {
+        let weatherData: [String: [WeatherList]] = sortWeatherByDay(from: weatherList)
+        let weatherViewData: [WeatherDayData] = weatherData.keys.map { key in
+            let elementsInDay = weatherData[key]
+            let weatherViewData = WeatherDayData(day: key, weatherList: elementsInDay ?? [])
+            
+            return weatherViewData
+        }
+        return weatherViewData
+    }
+    
+    private func sortWeatherByDay(from weatherList: [WeatherList]) ->  [String: [WeatherList]]  {
+        var weatherData: [String: [WeatherList]] =  [String: [WeatherList]]()
+        for item in weatherList {
+            let date = Date(timeIntervalSince1970: TimeInterval(item.dt))
+            let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
+            
+            let dayStr = "\(calendarDate.day ?? 0)"
+            var elementsInDay = weatherData[dayStr]
+            if elementsInDay == nil {
+                elementsInDay = []
+            }
+            elementsInDay?.append(item)
+            weatherData[dayStr] = elementsInDay
+        }
+        return weatherData
     }
   
     func item(at indexPath: IndexPath) -> WeatherDayPresenterProtocol {
