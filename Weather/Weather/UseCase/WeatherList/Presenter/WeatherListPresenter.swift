@@ -16,14 +16,11 @@ class WeatherListPresenter {
     private let imageDownloader = ImageDownloader()
     
     private let networkProvider: NetworkProviderProtocol
-    private var weatherEndPoint: WeatherApiServiceProtocol
-    
+    private var defaultWeatherEndPoint: WeatherApiServiceProtocol
     private var weatherViewData: [WeatherDayData] = []
     
-
-    
-    init(networkProvider: NetworkProviderProtocol = NetworkSessionProvider(session: URLSession.makeUrlSession()) /*WeatherProviderStub()*/, endPoint: WeatherApiServiceProtocol = WeatherApiService.search(text: "Madrid")) {
-        self.weatherEndPoint = endPoint
+    init(networkProvider: NetworkProviderProtocol = NetworkSessionProvider(session: URLSession.makeUrlSession()) /*WeatherProviderStub()*/, endPoint: WeatherApiServiceProtocol = WeatherApiService.defaultAnswer) {
+        self.defaultWeatherEndPoint = endPoint
         self.networkProvider = networkProvider
     }
     
@@ -35,6 +32,10 @@ class WeatherListPresenter {
 extension WeatherListPresenter: WeatherListDelegate {
  
     func viewWasLoaded() {
+        getData(using: defaultWeatherEndPoint)
+    }
+    
+    private func getData(using weatherEndPoint: WeatherApiServiceProtocol) {
         networkProvider.request(type: Welcome.self, service: weatherEndPoint) { [weak self] (result) in
             guard let self = self else {
                 return
@@ -84,7 +85,12 @@ extension WeatherListPresenter: WeatherListDelegate {
     }
     
     func search(searchText: String) {
-        
+        if searchText.isEmpty {
+            getData(using: defaultWeatherEndPoint)
+        } else {
+            let searchEndPoint = WeatherApiService.search(text: searchText)
+            getData(using: searchEndPoint)
+        }
     }
     
 }

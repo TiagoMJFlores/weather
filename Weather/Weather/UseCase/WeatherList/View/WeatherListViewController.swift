@@ -99,7 +99,8 @@ extension WeatherListViewController: UITableViewDelegate {
 extension WeatherListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        
+        let searchText = searchController.searchBar.text ?? ""
+        presenter.search(searchText: searchText)
     }
     
 }

@@ -42,6 +42,7 @@ enum WeatherApiService: WeatherApiServiceProtocol {
     
         case .search(let text):
             let queryItems = [URLQueryItem(name: "q", value: text), URLQueryItem(name: "appid", value: "5b9b1ff07f3972c825ba43eb281a31c7")]
+            print("search w/ \(text)")
         return queryItems
         }
     }
