@@ -10,7 +10,7 @@ import Foundation
 typealias WeatherListPresenterProtocol = WeatherListDelegate & WeatherListDataSource
 
 
-class WeatherListPresenter {
+final class WeatherListPresenter {
     
     weak var view: WeatherViewReceiver?
     private let imageDownloader = ImageDownloader()
@@ -23,7 +23,6 @@ class WeatherListPresenter {
         self.defaultWeatherEndPoint = endPoint
         self.networkProvider = networkProvider
     }
-    
     
 
 }
@@ -61,8 +60,8 @@ extension WeatherListPresenter: WeatherListDelegate {
         var weatherData: [String: [WeatherList]] =  [String: [WeatherList]]()
         for item in weatherList {
             let date = Date(timeIntervalSince1970: TimeInterval(item.dt))
-            let calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: date)
-            let dayStr = "\(calendarDate.day ?? 0)"
+            let calendarDate = Calendar.current.dateComponents([.day , .month], from: date)
+            let dayStr = "\(calendarDate.day ?? 0)\(calendarDate.month ?? 0)"
             var elementsInDay = weatherData[dayStr]
             if elementsInDay == nil {
                 elementsInDay = []

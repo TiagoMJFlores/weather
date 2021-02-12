@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherDaysTableViewCell: UITableViewCell {
+final class WeatherDaysTableViewCell: UITableViewCell {
 
     private let collectionInsets: CGFloat = 16
     private var presenter: WeatherDayPresenterProtocol?

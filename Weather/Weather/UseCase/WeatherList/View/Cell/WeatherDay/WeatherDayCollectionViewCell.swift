@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherDayCollectionViewCell: UICollectionViewCell {
+final class WeatherDayCollectionViewCell: UICollectionViewCell {
     
     private var presenter: WeatherDayPresenterProtocol?
  

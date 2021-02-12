@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherListViewController: UIViewController {
+final class WeatherListViewController: UIViewController {
 
     private let cellHeight: CGFloat = 230
     
