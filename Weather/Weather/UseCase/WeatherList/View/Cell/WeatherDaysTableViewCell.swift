@@ -12,6 +12,17 @@ final class WeatherDaysTableViewCell: UITableViewCell {
     private let collectionInsets: CGFloat = 16
     private var presenter: WeatherDayPresenterProtocol?
     
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center;
+        label.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(label)
+        label.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        label.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        label.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        return label
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
          layout.scrollDirection = .horizontal
@@ -24,12 +35,10 @@ final class WeatherDaysTableViewCell: UITableViewCell {
         collection.delegate = self
         collection.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(collection)
-        collection.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        collection.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         collection.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        collection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         collection.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-     
-       // layout.itemSize = self.collectionView.frame.size
+        collection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         return collection
     }()
     
@@ -66,6 +75,7 @@ extension WeatherDaysTableViewCell: UICollectionViewDelegate,  UICollectionViewD
   
         cell.backgroundColor = UIColor.gray
         cell.largeContentTitle = "sdss"
+        titleLabel.text = presenter.weatherData.day
         cell.configure( indexPath: indexPath, with: presenter)
        // let item = presenter.im
         //cell.configure(with: WeatherDayPresenter(imageDownloader: )

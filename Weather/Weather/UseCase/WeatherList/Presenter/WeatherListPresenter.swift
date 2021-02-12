@@ -24,7 +24,6 @@ final class WeatherListPresenter {
         self.networkProvider = networkProvider
     }
     
-
 }
 
 
@@ -61,7 +60,7 @@ extension WeatherListPresenter: WeatherListDelegate {
         for item in weatherList {
             let date = Date(timeIntervalSince1970: TimeInterval(item.dt))
             let calendarDate = Calendar.current.dateComponents([.day , .month], from: date)
-            let dayStr = "\(calendarDate.day ?? 0)\(calendarDate.month ?? 0)"
+            let dayStr = "\(calendarDate.day ?? 0)/\(calendarDate.month ?? 0)"
             var elementsInDay = weatherData[dayStr]
             if elementsInDay == nil {
                 elementsInDay = []
