@@ -31,7 +31,6 @@ class WeatherListViewController: UIViewController {
     }()
         
   
-    
     let presenter: WeatherListProtocol
     
     init(presenter: WeatherListProtocol) {
@@ -42,7 +41,6 @@ class WeatherListViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("not using storyboards")
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

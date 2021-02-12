@@ -21,14 +21,16 @@ class WeatherListPresenter: WeatherListProtocol {
     private let imageDownloader = ImageDownloader()
     
     private let networkProvider: NetworkProviderProtocol
+    private var weatherEndPoint: WeatherApiServiceProtocol
     
-    init(networkProvider: NetworkProviderProtocol = WeatherProviderStub()) {
+    init(networkProvider: NetworkProviderProtocol = NetworkSessionProvider(session: URLSession.makeUrlSession()) /*WeatherProviderStub()*/, endPoint: WeatherApiServiceProtocol = WeatherApiService.search(text: "Madrid")) {
+        self.weatherEndPoint = endPoint
         self.networkProvider = networkProvider
-        
     }
     
+    
     func viewWasLoaded() {
-        networkProvider.request(type: Welcome.self) { [weak self] (result) in
+        networkProvider.request(type: Welcome.self, service: weatherEndPoint) { [weak self] (result) in
             guard let self = self else {
                 return
             }

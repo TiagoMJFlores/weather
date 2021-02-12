@@ -10,4 +10,5 @@ import Foundation
 enum NetworkError {
     case parsing(String)
     case unknown
+    case noJSONData
 }
