@@ -78,18 +78,12 @@ class WeatherDayCollectionViewCell: UICollectionViewCell {
     
     func configure(indexPath: IndexPath, with presenter: WeatherDayPresenterProtocol) {
 
-        let item = presenter.item(at: indexPath)
-        titleTextLabel.text =  "Temperatue: \(item.main.temp), Time: \(item.timeStr)"
-        
-        if let weatherItem = item.weather.first {
-            let imageUrl =  "https://openweathermap.org/img/wn/\(weatherItem.icon)@2x.png"
-        presenter.imageDownloader.downloadImage(imageUrl: imageUrl) { [weak self] image in
-            guard let self = self else {
-                return
-            }
-            self.weatherImageView.image = image
+        titleTextLabel.text = presenter.weatherDataStr(indexPath: indexPath)
+        presenter.downloadImage(indexPath: indexPath) { [weak self] image in
+                guard let self = self else {
+                    return
+                }
+                self.weatherImageView.image = image
         }
-        }
-          
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 protocol WeatherCollectionDataSource {
+    func weatherDataStr(indexPath: IndexPath) -> String 
     func numberItems() -> Int
     func item(at indexPath: IndexPath) -> WeatherList
 }
