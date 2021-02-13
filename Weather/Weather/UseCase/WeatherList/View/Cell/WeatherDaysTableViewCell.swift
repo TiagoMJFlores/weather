@@ -63,7 +63,7 @@ final class WeatherDaysTableViewCell: UITableViewCell {
 extension WeatherDaysTableViewCell: UICollectionViewDelegate,  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return presenter?.numberItems() ?? 0
     }
     
 
@@ -77,8 +77,6 @@ extension WeatherDaysTableViewCell: UICollectionViewDelegate,  UICollectionViewD
         cell.largeContentTitle = "sdss"
         titleLabel.text = presenter.weatherData.day
         cell.configure( indexPath: indexPath, with: presenter)
-       // let item = presenter.im
-        //cell.configure(with: WeatherDayPresenter(imageDownloader: )
         return cell
     }
     
