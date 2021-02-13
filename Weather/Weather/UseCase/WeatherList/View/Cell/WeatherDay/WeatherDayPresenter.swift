@@ -12,7 +12,7 @@ protocol WeatherDayPresenterProtocol: WeatherCollectionDataSource {
     func downloadImage(indexPath: IndexPath, completion: @escaping (UIImage) -> Void)
 }
 
-class WeatherDayPresenter: WeatherDayPresenterProtocol {
+final class WeatherDayPresenter: WeatherDayPresenterProtocol {
     
     private(set) var imageDownloader: ImageDownloaderProtocol
     private(set) var weatherData: WeatherDayData
@@ -22,7 +22,6 @@ class WeatherDayPresenter: WeatherDayPresenterProtocol {
         self.imageDownloader = imageDownloader
     }
     
-
 }
 
 extension WeatherDayPresenter: WeatherCollectionDataSource  {

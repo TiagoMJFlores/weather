@@ -26,7 +26,8 @@ enum WeatherApiService: WeatherApiServiceProtocol {
     case defaultAnswer
     
     var baseURL: String {
-        return "https://api.openweathermap.org/data/2.5"
+        let url = InfoPListStringReader.BASE_URL.getValue()
+        return url ?? ""
     }
     
     var path: String? {
@@ -37,14 +38,22 @@ enum WeatherApiService: WeatherApiServiceProtocol {
         switch self {
 
         case .defaultAnswer:
-            let queryItems = [URLQueryItem(name: "q", value: "Lisbon"), URLQueryItem(name: "appid", value: "5b9b1ff07f3972c825ba43eb281a31c7")]
+
+            var queryItems = [URLQueryItem(name: "q", value: "Lisbon")]
+            queryItems.append(contentsOf: defaultQueryItems)
         return queryItems
     
         case .search(let text):
-            let queryItems = [URLQueryItem(name: "q", value: text), URLQueryItem(name: "appid", value: "5b9b1ff07f3972c825ba43eb281a31c7")]
-            print("search w/ \(text)")
+            var queryItems = [URLQueryItem(name: "q", value: text)]
+            queryItems.append(contentsOf: defaultQueryItems)
         return queryItems
         }
+    }
+    
+    private var defaultQueryItems: [URLQueryItem] {
+        let apiKey = InfoPListStringReader.API_KEY.getValue()
+        let queryItems = [URLQueryItem(name: "appid", value: apiKey)]
+        return queryItems
     }
     
 }

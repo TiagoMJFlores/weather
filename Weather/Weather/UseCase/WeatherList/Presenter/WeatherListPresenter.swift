@@ -19,7 +19,7 @@ final class WeatherListPresenter {
     private var defaultWeatherEndPoint: WeatherApiServiceProtocol
     private var weatherViewData: [WeatherDayData] = []
     
-    init(networkProvider: NetworkProviderProtocol = NetworkSessionProvider(session: URLSession.makeUrlSession()) /*WeatherProviderStub()*/, endPoint: WeatherApiServiceProtocol = WeatherApiService.defaultAnswer) {
+    init(networkProvider: NetworkProviderProtocol = NetworkSessionProvider(session: URLSession.makeUrlSession()) , endPoint: WeatherApiServiceProtocol = WeatherApiService.defaultAnswer) {
         self.defaultWeatherEndPoint = endPoint
         self.networkProvider = networkProvider
     }

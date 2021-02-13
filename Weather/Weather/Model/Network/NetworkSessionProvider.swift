@@ -17,7 +17,6 @@ class NetworkSessionProvider: NetworkProviderProtocol {
     
     func request<T>(type: T.Type, service: EndPointDataProtocol, completion: @escaping (NetworkAnswer<T>) -> ()) where T : Decodable {
         let url = service.baseURL + (service.path ?? "")
-        print("ask url \(url)")
         var urlComps = URLComponents(string: url)!
         urlComps.queryItems = service.queryItems
         let request = URLRequest(url: urlComps.url!)
