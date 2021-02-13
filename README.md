@@ -24,6 +24,9 @@ The interaction between View and Presenter is managed by 3 protocols:
 
 I decied use xcode code configuration files to better organize the base url and api key. So later on we could create a distinction between staging environment, QA and production. 
 
+For network layer I used URLSession.
+To download images I decided to use NSCache to avoid downloading the same image multiple times.
+
 Also there were a few options that I decided not to make on this demo but they may make sense in a longer project.
 
 What can be improved in the project:
