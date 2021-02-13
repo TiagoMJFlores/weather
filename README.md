@@ -7,7 +7,7 @@ I find difficult to implement MVVM correctly without UI Data Binding framework l
 I decided don't use something like because RxSwift goes against code simplicity/KISS principle and introduces some complexity to project. Good code is also code that a junior developer can follow easily.
 Also inserting more 1 depedency also would increase compile time.  
 I decided MVP instead of something like VIPER to reduce layers and earn agility.
-Dependeding of the scale of team we could decide use something more modular and follow a more clean architecture pure approach.
+Dependeding of the scale of team we could decide use something more modular and follow a more pure clean architecture pure approach.
 
 In MVP. i have 3 layers:
 * View - ViewControllers and UIKit
